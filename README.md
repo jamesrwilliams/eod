@@ -14,3 +14,8 @@ ln -s /path/to/project/app.py /usr/local/bin/eod
 
 You'll also need to export your API Token to from [your Toggl Track profile](https://track.toggl.com/profile)
 as `TOGGLE_KEY` to use this.
+
+```shell
+# in your .bashrc / .zshrc
+export TOGGLE_KEY=YOUR_API_KEY
+```
