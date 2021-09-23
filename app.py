@@ -3,7 +3,8 @@
 import datetime
 import os
 
-import pyperclip
+from lib.summary import generate_summary_list, render_output
+
 from dotenv import load_dotenv
 from datetime import datetime, date, time, timedelta
 
@@ -15,7 +16,7 @@ API_KEY = os.getenv('TOGGLE_KEY')
 API_BASE = "https://api.track.toggl.com/api/v8/"
 
 
-def get_entries():
+def run():
 
     if not API_KEY:
         print("Can't find your TOGGLE_KEY - Ensure it's exported and available: `echo $TOGGLE_KEY`")
@@ -33,34 +34,10 @@ def get_entries():
     )
 
     response = requests.get(f"{API_BASE}/time_entries", params=params, auth=(API_KEY, 'api_token'))
-    entries = response.json()
+    data = response.json()
 
-    items = {}
+    print(generate_summary(data))
 
-    print(f"\nGenerating daily summary for {date.today()} from Toggl Track:\n")
-
-    for entry in entries:
-        name = entry['description']
-        duration = entry['duration']
-
-        if name not in items:
-            items[name] = duration
-        else:
-            items[name] = items[name] + duration
-
-    output = sorted(items.items(), key=lambda kv: kv[1], reverse=True)
-
-    final_parts = ["\N{Studio Microphone} Today"]
-
-    for entry in output:
-        final_parts.append(f"• {entry[0]}")
-
-    final_parts.append("\nYour daily summary has been copied to your clipboard!")
-
-    final = "\n".join(final_parts)
-
-    pyperclip.copy(final)
-    print(final)
 
 if __name__ == "__main__":
-    get_entries()
+    run()
