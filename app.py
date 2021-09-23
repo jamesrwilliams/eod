@@ -36,7 +36,9 @@ def run():
     response = requests.get(f"{API_BASE}/time_entries", params=params, auth=(API_KEY, 'api_token'))
     data = response.json()
 
-    print(generate_summary(data))
+    summary_list = generate_summary_list(data)
+
+    print(render_output(summary_list))
 
 
 if __name__ == "__main__":
