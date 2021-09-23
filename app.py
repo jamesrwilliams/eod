@@ -44,14 +44,16 @@ def get_entries():
         duration = entry['duration']
 
         if name not in items:
-            items[name] = (name, duration)
+            items[name] = duration
+        else:
+            items[name] = items[name] + duration
 
-    output = dict(sorted(items.items(), key=lambda x: x[1]))
+    output = sorted(items.items(), key=lambda kv: kv[1], reverse=True)
 
     final_parts = ["\N{Studio Microphone} Today"]
 
     for entry in output:
-        final_parts.append(f"• {entry}")
+        final_parts.append(f"• {entry[0]}")
 
     final_parts.append("\nYour daily summary has been copied to your clipboard!")
 
