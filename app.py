@@ -37,8 +37,12 @@ def run():
     data = response.json()
 
     summary_list = generate_summary_list(data)
+    output = render_output(summary_list)
 
-    print(render_output(summary_list))
+    if not output:
+        print("No entries - Did you not track your time today?!")
+    else:
+        print(output)
 
 
 if __name__ == "__main__":

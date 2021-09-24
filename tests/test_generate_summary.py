@@ -1,11 +1,8 @@
 from lib.summary import generate_summary_list
 
 
-def test_foo():
-    output = "No entries - Did you not track your time today?!"
-    result = generate_summary_list([])
-
-    assert result == output
+def test_empty_results():
+    assert generate_summary_list([]) == []
 
 
 def test_default_ordering():
