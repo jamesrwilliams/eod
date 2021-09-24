@@ -43,6 +43,7 @@ def run():
         print("No entries - Did you not track your time today?!")
     else:
         print(output)
+        print("\nYour daily summary has been copied to your clipboard!\n")
 
 
 if __name__ == "__main__":

@@ -19,3 +19,12 @@ as `TOGGLE_KEY` to use this.
 # in your .bashrc / .zshrc
 export TOGGLE_KEY=YOUR_API_KEY
 ```
+
+## Usage
+
+```shell
+eod
+```
+
+You can automatically exclude entries from appearing in your summary by adding a `personal` tag 
+in Toggl Track, to the entry.
